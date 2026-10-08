@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felcy Creation | Bespoke Women's Fashion & Couture Studio</title>
+    <meta name="description" content="Felcy Creation — Handcrafted bespoke women's fashion, custom ethnic wear, designer blouses, and couture stitching by Felcy.">
+    
+    <meta property="og:title" content="Felcy Creation | Women's Fashion Designer">
+    <meta property="og:description" content="Discover bespoke couture, intricate hand embroidery, and tailored women's outfits designed with care.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/hero.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* ==========================================================================
+           1. MODERN ULTRA-WIDE DESIGN TOKENS & RESET
+           ========================================================================== */
+        :root {
+            /* Palette: Luxurious Warm Atelier Aesthetic */
+            --bg-base: #FAF7F2;        /* Pure Warm Alabaster */
+            --bg-surface: #F3ECE2;     /* Silk Cashmere */
+            --bg-elevated: #FFFFFF;    /* Pure White */
+            --ink-primary: #1E1B19;    /* Espresso Onyx */
+            --ink-secondary: #685F58;  /* Warm Taupe */
+            --ink-tertiary: #A29890;   /* Muted Slate Sand */
+            
+            --accent-gold: #C59A6F;    /* Champagne Antique Gold */
+            --accent-rose: #C69289;    /* Dusty Rose */
+            --accent-glow: rgba(198, 146, 137, 0.18);
+            --line-subtle: rgba(30, 27, 25, 0.08);
+            --line-gold: rgba(197, 154, 111, 0.35);
+
+            /* Typography */
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Montserrat', system-ui, sans-serif;
+
+            /* Ultra-Wide Scale System */
+            --max-w-fluid: 1600px;
+            --container-gutter: clamp(20px, 4vw, 64px);
+
+            /* Transitions */
+            --cubic-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-smooth: 0.6s var(--cubic-luxury);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--ink-primary);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+        }
+
+        p {
+            color: var(--ink-secondary);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Fluid Layout Utility */
+        .wide-container {
+            width: 100%;
+            max-width: var(--max-w-fluid);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: var(--container-gutter);
+            padding-right: var(--container-gutter);
+        }
+
+        .section-gap {
+            padding-top: clamp(80px, 9vw, 150px);
+            padding-bottom: clamp(80px, 9vw, 150px);
+        }
+
+        /* Badges & Accents */
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-kicker::before,
+        .section-kicker::after {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background-color: var(--accent-gold);
+        }
+
+        .section-title {
+            font-size: clamp(2.4rem, 4.5vw, 4rem);
+            color: var(--ink-primary);
+            margin-bottom: 20px;
+        }
+
+        /* ==========================================================================
+           2. BUTTONS & MICRO-INTERACTIONS
+           ========================================================================== */
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 40px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            z-index: 1;
+        }
+
+        .btn-luxury {
+            background-color: var(--ink-primary);
+            color: var(--bg-base);
+            border: 1px solid var(--ink-primary);
+        }
+
+        .btn-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-rose);
+            z-index: -1;
+            transform: translateY(100%);
+            transition: transform 0.5s var(--cubic-luxury);
+        }
+
+        .btn-luxury:hover::before {
+            transform: translateY(0);
+        }
+
+        .btn-luxury:hover {
+            color: #FFFFFF;
+            border-color: var(--accent-rose);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(198, 146, 137, 0.3);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--ink-primary);
+            border: 1px solid var(--line-subtle);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(30, 27, 25, 0.04);
+            border-color: var(--ink-primary);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           3. FLOATING NAVBAR
+           ========================================================================== */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 28px 0;
+            transition: var(--transition-smooth);
+        }
+
+        .site-header.scrolled {
+            padding: 16px 0;
+            background: rgba(250, 247, 242, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--line-subtle);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            font-family: var(--font-serif);
+            font-size: 1.85rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            color: var(--ink-primary);
+            display: inline-flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .brand-logo span {
+            color: var(--accent-rose);
+            font-size: 2.2rem;
+            line-height: 0;
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .desktop-nav a {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-weight: 500;
+            color: var(--ink-secondary);
+            position: relative;
+        }
+
+        .desktop-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--accent-rose);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s var(--cubic-luxury);
+        }
+
+        .desktop-nav a:hover {
+            color: var(--ink-primary);
+        }
+
+        .desktop-nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--ink-primary);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* ==========================================================================
+           4. WIDE EDITORIAL HERO SECTION
+           ========================================================================== */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            padding-top: 130px;
+            padding-bottom: 70px;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 80% 20%, rgba(198, 146, 137, 0.08) 0%, transparent 60%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: clamp(32px, 6vw, 90px);
+            align-items: center;
+        }
+
+        .hero-text-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-headline {
+            font-size: clamp(3rem, 5.8vw, 5.8rem);
+            font-weight: 500;
+            line-height: 1.05;
+            margin-bottom: 28px;
+            color: var(--ink-primary);
+        }
+
+        .hero-headline em {
+            font-style: italic;
+            font-family: var(--font-serif);
+            font-weight: 400;
+            color: var(--accent-rose);
+        }
+
+        .hero-subhead {
+            font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+            color: var(--ink-secondary);
+            max-width: 580px;
+            margin-bottom: 44px;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        /* Hero Image Gallery Showcase */
+        .hero-visual-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-main-card {
+            position: relative;
+            width: 100%;
+            height: clamp(520px, 65vh, 720px);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(30, 27, 25, 0.12);
+        }
+
+        .hero-main-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 1.6s var(--cubic-luxury);
+        }
+
+        .hero-main-card:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Floating Trust Badge */
+        .floating-pill {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 100px;
+            padding: 14px 24px;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 3;
+            animation: softFloat 6s ease-in-out infinite;
+        }
+
+        .pill-badge-1 {
+            bottom: 30px;
+            left: -25px;
+        }
+
+        .pill-badge-2 {
+            top: 40px;
+            right: -20px;
+            animation-delay: -3s;
+        }
+
+        .pill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            box-shadow: 0 0 12px var(--accent-gold);
+        }
+
+        .pill-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--ink-primary);
+        }
+
+        .pill-desc {
+            font-size: 0.72rem;
+            color: var(--ink-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        @keyframes softFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ==========================================================================
+           5. ABOUT ATELIER (Expansive 2-Column Split)
+           ========================================================================== */
+        .about-section {
+            background-color: var(--bg-surface);
+            border-block: 1px solid var(--line-subtle);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: clamp(40px, 8vw, 110px);
+            align-items: center;
+        }
+
+        .about-portrait-wrap {
+            position: relative;
+        }
+
+        .about-portrait-frame {
+            position: relative;
+            height: clamp(520px, 60vh, 740px);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+        }
+
+        .about-portrait-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+
+        .about-decorative-border {
+            position: absolute;
+            inset: -16px;
+            border: 1px solid var(--accent-gold);
+            border-radius: 8px;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .about-content-block p {
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
+
+        .designer-signature {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 2.4rem;
+            color: var(--accent-rose);
+            margin-top: 28px;
+        }
+
+        /* Pillars of Craftsmanship */
+        .craft-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+            padding-top: 40px;
+            border-top: 1px solid var(--line-subtle);
+        }
+
+        .pillar-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--ink-primary);
+        }
+
+        .pillar-card p {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ==========================================================================
+           6. WIDE MASONRY PORTFOLIO GALLERY
+           ========================================================================== */
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 56px;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        /* Expanded 4-Column Responsive Masonry */
+        .wide-masonry {
+            column-count: 4;
+            column-gap: 28px;
+        }
+
+        .masonry-card {
+            break-inside: avoid;
+            margin-bottom: 28px;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: var(--bg-surface);
+            cursor: pointer;
+        }
+
+        .masonry-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 1.1s var(--cubic-luxury);
+        }
+
+        .masonry-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .masonry-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(30, 27, 25, 0.85) 0%, rgba(30, 27, 25, 0.1) 60%, transparent 100%);
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 28px;
+            transition: opacity 0.5s var(--cubic-luxury);
+        }
+
+        .masonry-card:hover .masonry-card-overlay {
+            opacity: 1;
+        }
+
+        .card-tag {
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-weight: 600;
+            margin-bottom: 4px;
+            transform: translateY(12px);
+            transition: transform 0.4s var(--cubic-luxury);
+        }
+
+        .card-title {
+            color: #FFFFFF;
+            font-size: 1.35rem;
+            transform: translateY(12px);
+            transition: transform 0.5s var(--cubic-luxury);
+        }
+
+        .masonry-card:hover .card-tag,
+        .masonry-card:hover .card-title {
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           7. YOUTUBE "BEST VIDEOS" SHOWCASE (WITH EMBED MODAL)
+           ========================================================================== */
+        .youtube-showcase-section {
+            background-color: var(--bg-surface);
+            position: relative;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(24px, 3vw, 40px);
+            margin-top: 56px;
+        }
+
+        .video-card {
+            background-color: var(--bg-elevated);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--line-subtle);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.08);
+            border-color: var(--line-gold);
+        }
+
+        .video-thumbnail-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .video-thumbnail-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: transform 0.8s var(--cubic-luxury), opacity 0.4s;
+        }
+
+        .video-card:hover .video-thumbnail-box img {
+            transform: scale(1.06);
+            opacity: 0.75;
+        }
+
+        .play-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #FF0000; /* YouTube Red */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            transition: transform 0.4s var(--cubic-luxury), background 0.4s;
+        }
+
+        .video-card:hover .play-indicator {
+            transform: translate(-50%, -50%) scale(1.15);
+            background-color: #FF0000;
+            color: #FFFFFF;
+        }
+
+        .video-info {
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .video-badge {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+        }
+
+        .video-card h3 {
+            font-size: 1.25rem;
+            color: var(--ink-primary);
+            margin-bottom: 12px;
+            line-height: 1.35;
+        }
+
+        .video-card p {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .video-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent-rose);
+        }
+
+        /* ==========================================================================
+           8. CLIENT CONVERSION CONTACT SECTION
+           ========================================================================== */
+        .contact-box {
+            background-color: var(--bg-elevated);
+            border-radius: 8px;
+            border: 1px solid var(--line-subtle);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.03);
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            overflow: hidden;
+        }
+
+        .contact-sidebar {
+            padding: clamp(36px, 6vw, 72px);
+            background-color: var(--bg-surface);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-links-list {
+            margin-top: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-link-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .link-icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-elevated);
+            border: 1px solid var(--line-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+        }
+
+        .contact-form-area {
+            padding: clamp(36px, 6vw, 72px);
+        }
+
+        .atelier-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-field label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--ink-secondary);
+            font-weight: 500;
+        }
+
+        .form-field input,
+        .form-field textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: var(--bg-base);
+            border: 1px solid var(--line-subtle);
+            border-radius: 2px;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: var(--ink-primary);
+            transition: var(--transition-smooth);
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background-color: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(197, 154, 111, 0.15);
+        }
+
+        /* ==========================================================================
+           9. LUXURY FOOTER
+           ========================================================================== */
+        .site-footer {
+            background-color: var(--ink-primary);
+            color: #FFFFFF;
+            padding-top: 90px;
+            padding-bottom: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 56px;
+            margin-bottom: 64px;
+        }
+
+        .footer-brand h3 {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+            color: #FFFFFF;
+        }
+
+        .footer-brand p {
+            color: var(--ink-tertiary);
+            max-width: 380px;
+        }
+
+        .footer-heading {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--accent-gold);
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer-nav a {
+            color: var(--ink-tertiary);
+            font-size: 0.92rem;
+        }
+
+        .footer-nav a:hover {
+            color: #FFFFFF;
+            padding-left: 6px;
+        }
+
+        .social-pill-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-circle-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            transition: var(--transition-smooth);
+        }
+
+        .social-circle-link:hover {
+            background-color: var(--accent-rose);
+            border-color: var(--accent-rose);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 36px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--ink-tertiary);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        /* ==========================================================================
+           10. INTERACTIVE MODALS (LIGHTBOX & YOUTUBE PLAYER)
+           ========================================================================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(18, 16, 15, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s var(--cubic-luxury);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .modal-close-btn:hover {
+            background: #FFFFFF;
+            color: var(--ink-primary);
+        }
+
+        /* Video Modal Content */
+        .video-modal-dialog {
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+        }
+
+        .video-modal-dialog iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Image Lightbox Content */
+        .lightbox-dialog {
+            max-width: 88vw;
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .lightbox-dialog img {
+            max-width: 100%;
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .lightbox-caption {
+            margin-top: 16px;
+            color: #FFFFFF;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .lightbox-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .lightbox-nav-btn:hover {
+            background: #FFFFFF;
+            color: var(--ink-primary);
+        }
+
+        .lightbox-prev { left: -70px; }
+        .lightbox-next { right: -70px; }
+
+        /* ==========================================================================
+           11. SCROLL REVEAL ANIMATIONS
+           ========================================================================== */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.85s var(--cubic-luxury), transform 0.85s var(--cubic-luxury);
+        }
+
+        .reveal-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.12s; }
+        .delay-2 { transition-delay: 0.24s; }
+        .delay-3 { transition-delay: 0.36s; }
+
+        /* Floating WhatsApp Quick Action */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 99;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 22px;
+            border-radius: 100px;
+            background-color: #25D366;
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+            transition: transform 0.3s var(--cubic-luxury), box-shadow 0.3s;
+        }
+
+        .floating-whatsapp:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(37, 211, 102, 0.45);
+        }
+
+        /* ==========================================================================
+           12. RESPONSIVE BREAKPOINTS
+           ========================================================================== */
+        @media (max-width: 1366px) {
+            .wide-masonry { column-count: 3; }
+        }
+
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+            .hero-visual-wrapper { max-width: 580px; margin: 0 auto; width: 100%; }
+            .about-grid { grid-template-columns: 1fr; gap: 60px; }
+            .video-grid { grid-template-columns: 1fr 1fr; }
+            .contact-box { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .wide-masonry { column-count: 2; }
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .mobile-toggle { display: block; }
+            .video-grid { grid-template-columns: 1fr; }
+            .wide-masonry { column-count: 1; }
+            .form-row { grid-template-columns: 1fr; }
+            .craft-pillars { grid-template-columns: 1fr; }
+            .floating-pill { display: none; }
+            .hero-headline { font-size: 2.8rem; }
+
+            /* Mobile Dropdown */
+            .mobile-nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 82%;
+                height: 100vh;
+                background-color: var(--bg-base);
+                z-index: 1000;
+                padding: 100px 36px;
+                display: flex;
+                flex-direction: column;
+                gap: 28px;
+                box-shadow: -15px 0 40px rgba(0, 0, 0, 0.1);
+                transition: right 0.5s var(--cubic-luxury);
+            }
+
+            .mobile-nav-menu.open {
+                right: 0;
+            }
+
+            .mobile-nav-menu a {
+                font-family: var(--font-serif);
+                font-size: 1.8rem;
+                color: var(--ink-primary);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header" id="navbar">
+        <div class="wide-container nav-inner">
+            <a href="#hero" class="brand-logo">
+                Felcy Creation<span>.</span>
+            </a>
+
+            <nav class="desktop-nav">
+                <a href="#hero">Atelier</a>
+                <a href="#about">The Designer</a>
+                <a href="#portfolio">Lookbook</a>
+                <a href="#youtube">Tutorials</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn-luxury" style="padding: 12px 28px;">Custom Order</a>
+                <button class="mobile-toggle" id="menuToggle" aria-label="Toggle Navigation">
+                    <i data-lucide="menu" style="width: 26px; height: 26px;"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-nav-menu" id="mobileMenu">
+        <!-- <a href="#hero">Atelier</a>
+        <a href="#about">The Designer</a>
+        <a href="#portfolio">Lookbook</a>
+        <a href="#youtube">Tutorials & Videos</a>
+        <a href="#contact">Custom Orders</a>
+        <div style="margin-top: 20px;">
+            <a href="https://wa.me/[WHATSAPP_NUMBER]" target="_blank" class="btn btn-luxury" style="width: 100%;">Chat on WhatsApp</a>
+        </div> -->
+    </div>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="wide-container">
+                <div class="hero-grid">
+                    <div class="hero-text-content reveal-up">
+                        <span class="section-kicker">Couture & Tailoring Atelier</span>
+                        <h1 class="hero-headline">Designed With <em>Passion.</em><br>Stitched With <em>Care.</em></h1>
+                        <p class="hero-subhead">Bespoke women's ethnic wear, customized festive silhouettes, and elegant bridal blouses made with precision craftsmanship and personal attention.</p>
+                        <div class="hero-cta-group">
+                            <a href="#portfolio" class="btn btn-luxury">
+                                Explore Lookbook <i data-lucide="arrow-right" style="width: 16px;"></i>
+                            </a>
+                            <a href="#youtube" class="btn btn-ghost">
+                                Watch Stitching Tutorials <i data-lucide="play" style="width: 14px;"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual-wrapper reveal-up delay-1">
+                        <div class="hero-main-card">
+                            <img src="images/hero.png" alt="Felcy Creation Fashion Studio" onerror="this.src='images/hero.jpg'">
+                        </div>
+
+                        <div class="floating-pill pill-badge-1">
+                            <span class="pill-dot"></span>
+                            <div>
+                                <p class="pill-title">Custom Measurements</p>
+                                <p class="pill-desc">Flawless Tailored Fit</p>
+                            </div>
+                        </div>
+
+                        <div class="floating-pill pill-badge-2">
+                            <i data-lucide="sparkles" style="color: var(--accent-gold); width: 20px;"></i>
+                            <div>
+                                <p class="pill-title">Handmade Finishes</p>
+                                <p class="pill-desc">Intricate Thread Art</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section-gap about-section">
+            <div class="wide-container">
+                <div class="about-grid">
+                    <div class="about-portrait-wrap reveal-up">
+                        <div class="about-decorative-border"></div>
+                        <div class="about-portrait-frame">
+                            <img src="images/designer.png" alt="Felcy Fashion Designer" onerror="this.src='images/designer.jpg'">
+                        </div>
+                    </div>
+
+                    <div class="about-content-block reveal-up delay-1">
+                        <span class="section-kicker">Meet The Designer</span>
+                        <h2 class="section-title">"Clothing is the art you wear to tell your own story."</h2>
+                        <p>Felcy is a passionate women's fashion designer who transforms sketches and premium fabrics into comfortable, show-stopping garments. From festive lehengas and royal sarees to intricately styled blouses and modern kurtis, every creation is hand-crafted to celebrate individuality.</p>
+                        <p>Through her popular YouTube channel <strong>Stitch & Style by Felcy</strong>, she shares her craft with thousands of aspiring tailors and fashion enthusiasts, proving that true style lies in meticulous attention to detail.</p>
+                        
+                        <div class="craft-pillars">
+                            <div class="pillar-card">
+                                <h4>Individual Fit</h4>
+                                <p>Patterns custom-cut to your specific silhouette and comfort preferences.</p>
+                            </div>
+                            <div class="pillar-card">
+                                <h4>Fine Artistry</h4>
+                                <p>Careful lining, hand-piping, potli accents, and flawless border seams.</p>
+                            </div>
+                            <div class="pillar-card">
+                                <h4>Fabric Care</h4>
+                                <p>Guidance on silks, organzas, linens, and pure cottons suited for every occasion.</p>
+                            </div>
+                        </div>
+
+                        <p class="designer-signature">Felcy</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section-gap">
+            <div class="wide-container">
+                <div class="portfolio-header reveal-up">
+                    <div>
+                        <span class="section-kicker">Lookbook & Creations</span>
+                        <h2 class="section-title">The Curated Collection</h2>
+                    </div>
+                    <p style="max-width: 480px;">Click on any piece to enlarge and view fabric finishes, embroidery textures, and handcrafted silhouettes.</p>
+                </div>
+
+                <div class="wide-masonry">
+                    <div class="masonry-card reveal-up" data-title="Blush Rose Embroidered Lehenga" data-src="images/design-01.png">
+                        <img src="images/design-01.png" alt="Handcrafted Lehenga" loading="lazy" onerror="this.src='images/design-01.jpg'">
+                        <div class="masonry-card-overlay">
+                            <span class="card-tag">Festive Couture</span>
+                            <h3 class="card-title">Rose Threadwork Lehenga</h3>
+                        </div>
+                    </div>
+
+                    <div class="masonry-card reveal-up delay-1" data-title="Bespoke Raw Silk Blouse" data-src="images/design-02.png">
+                        <img src="images/design-02.png" alt="Designer Blouse Stitching" loading="lazy" onerror="this.src='images/design-02.jpg'">
+                        <div class="masonry-card-overlay">
+                            <span class="card-tag">Designer Blouses</span>
+                            <h3 class="card-title">Back Neck Embroidery & Potli</h3>
+                        </div>
+                    </div>
+
+                    <div class="masonry-card reveal-up delay-2" data-title="Contemporary Sheer Organza Saree" data-src="images/design-03.png">
+                        <img src="images/design-03.png" alt="Designer Saree Draping" loading="lazy" onerror="this.src='images/design-03.jpg'">
+                        <div class="masonry-card-overlay">
+                            <span class="card-tag">Celebration Wear</span>
+                            <h3 class="card-title">Champagne Organza Saree</h3>
+                        </div>
+                    </div>
+
+                    <div class="masonry-card reveal-up delay-3" data-title="Handloom Linen A-Line Kurti" data-src="images/design-04.png">
+                        <img src="images/design-04.png" alt="Bespoke Linen Kurti" loading="lazy" onerror="this.src='images/design-04.jpg'">
+                        <div class="masonry-card-overlay">
+                            <span class="card-tag">Everyday Elegance</span>
+                            <h3 class="card-title">Embroidered Cotton Kurti</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="youtube" class="section-gap youtube-showcase-section">
+            <div class="wide-container">
+                <div class="portfolio-header reveal-up">
+                    <div>
+                        <span class="section-kicker">Stitch & Style by Felcy</span>
+                        <h2 class="section-title">Learn Sewing & Design Masterclasses</h2>
+                    </div>
+                    <a href="https://www.youtube.com/@StitchandStylebyFelcy" target="_blank" rel="noopener" class="btn btn-luxury">
+                        Visit YouTube Channel <i data-lucide="youtube" style="width: 18px;"></i>
+                    </a>
+                </div>
+
+                <div class="video-grid">
+                    <div class="video-card reveal-up" data-video-id="dQw4w9WgXcQ" data-title="Designer Blouse Cutting & Piping Guide">
+                        <div class="video-thumbnail-box">
+                            <img src="images/design-02.png" alt="Designer Blouse Tutorial" onerror="this.src='images/design-02.jpg'">
+                            <div class="play-indicator">
+                                <i data-lucide="play" style="width: 24px; height: 24px; fill: currentColor;"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-badge">Masterclass</span>
+                            <h3>Perfect Blouse Neckline & Piping Finishing</h3>
+                            <p>Step-by-step masterclass covering pattern drafting, fabric placement, and clean back potli button sewing.</p>
+                            <div class="video-card-meta">
+                                <i data-lucide="play-circle" style="width: 16px;"></i> Watch Video Lesson
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-card reveal-up delay-1" data-video-id="dQw4w9WgXcQ" data-title="Princess Cut Kurti Stitching Secrets">
+                        <div class="video-thumbnail-box">
+                            <img src="images/design-04.png" alt="Kurti Pattern Drafting" onerror="this.src='images/design-04.jpg'">
+                            <div class="play-indicator">
+                                <i data-lucide="play" style="width: 24px; height: 24px; fill: currentColor;"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-badge">Technique</span>
+                            <h3>Easy Princess Cut Kurti Pattern & Sewing</h3>
+                            <p>How to construct flattering panel lines, side slits, and clean neckline finishes for breathable daily kurtis.</p>
+                            <div class="video-card-meta">
+                                <i data-lucide="play-circle" style="width: 16px;"></i> Watch Video Lesson
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-card reveal-up delay-2" data-video-id="dQw4w9WgXcQ" data-title="Lehenga Flare and Latkan Making">
+                        <div class="video-thumbnail-box">
+                            <img src="images/design-01.png" alt="Lehenga Stitching Guide" onerror="this.src='images/design-01.jpg'">
+                            <div class="play-indicator">
+                                <i data-lucide="play" style="width: 24px; height: 24px; fill: currentColor;"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <span class="video-badge">Festive Craft</span>
+                            <h3>Maximum Kali Flare & Custom Fabric Latkans</h3>
+                            <p>Learn how to measure pleats and kali panels to give your lehengas a royal, flowing runway silhouette.</p>
+                            <div class="video-card-meta">
+                                <i data-lucide="play-circle" style="width: 16px;"></i> Watch Video Lesson
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-gap">
+            <div class="wide-container">
+                <div class="contact-box reveal-up">
+                    <div class="contact-sidebar">
+                        <div>
+                            <span class="section-kicker">Let's Create</span>
+                            <h2 style="font-size: 2.8rem; margin-bottom: 20px;">Bring Your Dream Outfit To Life.</h2>
+                            <p>Have a custom idea for an upcoming wedding, festive occasion, or tailored daily wear? Send a note or message directly on WhatsApp.</p>
+                            
+                            <div class="contact-links-list">
+                                <div class="contact-link-item">
+                                    <div class="link-icon-circle"><i data-lucide="phone"></i></div>
+                                    <div>
+                                        <p style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">WhatsApp & Calls</p>
+                                        <a href="https://wa.me/[WHATSAPP_NUMBER]" target="_blank" style="font-weight: 600; color: var(--ink-primary);">+[WHATSAPP_NUMBER]</a>
+                                    </div>
+                                </div>
+                                <div class="contact-link-item">
+                                    <div class="link-icon-circle"><i data-lucide="instagram"></i></div>
+                                    <div>
+                                        <p style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">Instagram DM</p>
+                                        <a href="https://instagram.com/felcy__creation" target="_blank" style="font-weight: 600; color: var(--ink-primary);">@felcy__creation</a>
+                                    </div>
+                                </div>
+                                <div class="contact-link-item">
+                                    <div class="link-icon-circle"><i data-lucide="youtube"></i></div>
+                                    <div>
+                                        <p style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">YouTube Tutorials</p>
+                                        <a href="https://www.youtube.com/@StitchandStylebyFelcy" target="_blank" style="font-weight: 600; color: var(--ink-primary);">Stitch and Style by Felcy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line-subtle);">
+                            <p style="font-size: 0.85rem; color: var(--accent-gold); font-weight: 500;">
+                                <i data-lucide="clock" style="width: 14px; display: inline; vertical-align: middle;"></i> Custom bookings open for the upcoming festive season.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-area">
+                        <form id="consultForm" class="atelier-form">
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="cName">Your Name</label>
+                                    <input type="text" id="cName" required placeholder="e.g. Priya Shah">
+                                </div>
+                                <div class="form-field">
+                                    <label for="cPhone">Contact / WhatsApp</label>
+                                    <input type="tel" id="cPhone" required placeholder="+91 98765 43210">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="cService">Outfit Type</label>
+                                <input type="text" id="cService" placeholder="e.g. Designer Saree Blouse / Wedding Lehenga / Kurti">
+                            </div>
+                            <div class="form-field">
+                                <label for="cMessage">Describe Your Vision / Requirements</label>
+                                <textarea id="cMessage" rows="4" required placeholder="Tell Felcy about your preferred colors, fabric, deadlines, or design ideas..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-luxury" style="width: 100%;">
+                                Send Consultation Request <i data-lucide="send" style="width: 16px;"></i>
+                            </button>
+                            <p id="formFeedback" style="font-size: 0.85rem; color: var(--accent-rose); text-align: center; margin-top: 10px;"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wide-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Felcy Creation.</h3>
+                    <p>Celebrated craftsmanship, modern silhouettes, and bespoke tailoring designed to elevate every woman's wardrobe.</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Navigation</h4>
+                    <div class="footer-nav">
+                        <a href="#hero">Atelier Home</a>
+                        <a href="#about">About the Designer</a>
+                        <a href="#portfolio">Featured Lookbook</a>
+                        <a href="#youtube">Sewing Tutorials</a>
+                        <a href="#contact">Book a Consultation</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Follow The Journey</h4>
+                    <p style="color: var(--ink-tertiary); font-size: 0.9rem; margin-bottom: 20px;">Watch behind-the-scenes cutting, stitching videos, and lookbooks.</p>
+                    <div class="social-pill-group">
+                        <a href="https://instagram.com/felcy__creation" target="_blank" rel="noopener" class="social-circle-link" aria-label="Instagram">
+                            <i data-lucide="instagram" style="width: 20px;"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@StitchandStylebyFelcy" target="_blank" rel="noopener" class="social-circle-link" aria-label="YouTube">
+                            <i data-lucide="youtube" style="width: 20px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="crYear">2026</span> Felcy Creation. All rights reserved.</p>
+                <p>Designed with Passion &bull; Stitched With Care</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="videoModal">
+        <button class="modal-close-btn" id="closeVideoModal" aria-label="Close Video"><i data-lucide="x"></i></button>
+        <div class="video-modal-dialog">
+            <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="imageLightbox">
+        <button class="modal-close-btn" id="closeLightbox" aria-label="Close Lightbox"><i data-lucide="x"></i></button>
+        <div class="lightbox-dialog">
+            <button class="lightbox-nav-btn lightbox-prev" id="prevLightboxBtn" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+            <img src="" alt="Lookbook Enlarged" id="lightboxTargetImg">
+            <p class="lightbox-caption" id="lightboxCaptionText"></p>
+            <button class="lightbox-nav-btn lightbox-next" id="nextLightboxBtn" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+        </div>
+    </div>
+
+    <a href="https://wa.me/[WHATSAPP_NUMBER]?text=Hi%20Felcy%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20consult%20for%20a%20custom%20design." target="_blank" rel="noopener" class="floating-whatsapp" aria-label="Chat with Felcy on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.2-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.200c0 1.300.9 2.500 1 2.700.1.200 1.800 2.800 4.400 3.900 1.600.7 2.300.8 3.100.7.500-.1 1.500-.6 1.700-1.200.2-.6.2-1.100.2-1.200-.1-.1-.3-.2-.5-.3z"/></svg>
+        <span>Consult on WhatsApp</span>
+    </a>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('crYear').textContent = new Date().getFullYear();
+
+        // 1. STICKY NAVBAR WITH BACKDROP BLUR
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }, { passive: true });
+
+        // 2. MOBILE HAMBURGER MENU
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        // 3. SCROLL REVEAL OBSERVER
+        const reveals = document.querySelectorAll('.reveal-up');
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+
+        // 4. INTERACTIVE YOUTUBE VIDEO MODAL
+        const videoModal = document.getElementById('videoModal');
+        const videoIframe = document.getElementById('videoIframe');
+        const closeVideoModal = document.getElementById('closeVideoModal');
+        const videoCards = document.querySelectorAll('.video-card');
+
+        videoCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const videoId = card.getAttribute('data-video-id');
+                videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                videoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function hideVideoModal() {
+            videoModal.classList.remove('active');
+            videoIframe.src = '';
+            document.body.style.overflow = '';
+        }
+
+        closeVideoModal.addEventListener('click', hideVideoModal);
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) hideVideoModal();
+        });
+
+        // 5. MASONRY LIGHTBOX WITH KEYBOARD NAVIGATION
+        const imageLightbox = document.getElementById('imageLightbox');
+        const lightboxTargetImg = document.getElementById('lightboxTargetImg');
+        const lightboxCaptionText = document.getElementById('lightboxCaptionText');
+        const closeLightbox = document.getElementById('closeLightbox');
+        const prevLightboxBtn = document.getElementById('prevLightboxBtn');
+        const nextLightboxBtn = document.getElementById('nextLightboxBtn');
+        const masonryCards = document.querySelectorAll('.masonry-card');
+
+        let currentImgIdx = 0;
+        const galleryData = [];
+
+        masonryCards.forEach((card, idx) => {
+            const img = card.querySelector('img');
+            galleryData.push({
+                src: card.getAttribute('data-src') || img.src,
+                title: card.getAttribute('data-title') || img.alt
+            });
+
+            card.addEventListener('click', () => {
+                currentImgIdx = idx;
+                openImage(currentImgIdx);
+            });
+        });
+
+        function openImage(index) {
+            lightboxTargetImg.src = galleryData[index].src;
+            lightboxCaptionText.textContent = galleryData[index].title;
+            imageLightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideImageModal() {
+            imageLightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function showNextImg() {
+            currentImgIdx = (currentImgIdx + 1) % galleryData.length;
+            openImage(currentImgIdx);
+        }
+
+        function showPrevImg() {
+            currentImgIdx = (currentImgIdx - 1 + galleryData.length) % galleryData.length;
+            openImage(currentImgIdx);
+        }
+
+        closeLightbox.addEventListener('click', hideImageModal);
+        nextLightboxBtn.addEventListener('click', showNextImg);
+        prevLightboxBtn.addEventListener('click', showPrevImg);
+        imageLightbox.addEventListener('click', (e) => {
+            if (e.target === imageLightbox) hideImageModal();
+        });
+
+        // Global Esc & Arrow keys
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideVideoModal();
+                hideImageModal();
+            }
+            if (imageLightbox.classList.contains('active')) {
+                if (e.key === 'ArrowRight') showNextImg();
+                if (e.key === 'ArrowLeft') showPrevImg();
+            }
+        });
+
+        // 6. FORM HANDLER (PRE-FILLED MAILTO)
+        const consultForm = document.getElementById('consultForm');
+        const formFeedback = document.getElementById('formFeedback');
+
+        consultForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('cName').value.trim();
+            const phone = document.getElementById('cPhone').value.trim();
+            const service = document.getElementById('cService').value.trim();
+            const message = document.getElementById('cMessage').value.trim();
+
+            if (!name || !phone || !message) return;
+
+            const subject = encodeURIComponent(`Bespoke Couture Inquiry from ${name}`);
+            const body = encodeURIComponent(`Client Name: ${name}\nPhone/WhatsApp: ${phone}\nOutfit Type: ${service}\n\nVision:\n${message}`);
+
+            formFeedback.textContent = 'Redirecting to your email client...';
+            window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+
+            setTimeout(() => {
+                consultForm.reset();
+                formFeedback.textContent = '';
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
