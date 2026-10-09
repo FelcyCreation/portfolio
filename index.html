@@ -25,7 +25,7 @@
 
     <!-- ===== LIVE VISITOR TRACKING (Google Analytics 4) =====
          Paste your Measurement ID below (looks like G-AB12CD34EF). Until then nothing is sent. -->
-    <script>
+    <!-- <script>
         const GA_ID = 'G-Z00HHHR5SX';
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -47,7 +47,59 @@
             else if (h.includes('youtube.com')) track('youtube_click');
             else if (a.getAttribute('href') === '#contact') track('custom_order_click');
         });
-    </script>
+    </script> -->
+
+        <script>
+            const GA_ID = 'G-Z00HHHR5SX'; // Replace if this is not your actual Measurement ID
+
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                window.dataLayer.push(arguments);
+            }
+
+            // Enable Google Analytics
+            const GA_ON = /^G-[A-Z0-9]+$/.test(GA_ID);
+
+            if (GA_ON) {
+                const script = document.createElement('script');
+                script.async = true;
+                script.src =
+                    'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+
+                document.head.appendChild(script);
+
+                gtag('js', new Date());
+                gtag('config', GA_ID);
+            }
+
+            // Track custom events
+            function track(name, params) {
+                if (GA_ON) {
+                    gtag('event', name, params || {});
+                }
+            }
+
+            // Track social and contact clicks
+            document.addEventListener('click', function (e) {
+                const target = e.target;
+                const a = target.closest && target.closest('a');
+
+                if (!a) return;
+
+                const href = a.href || '';
+
+                if (href.includes('wa.me')) {
+                    track('whatsapp_click');
+                } else if (href.includes('instagram.com')) {
+                    track('instagram_click');
+                } else if (href.includes('youtube.com')) {
+                    track('youtube_click');
+                } else if (a.getAttribute('href') === '#contact') {
+                    track('custom_order_click');
+                }
+            });
+        </script>
 
     <style>
         /* ==========================================================================
