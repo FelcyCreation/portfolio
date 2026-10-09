@@ -11,7 +11,7 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="images/hero.png">
 
-     <link rel="icon" href="images/favicon.ico" sizes="any">
+    <link rel="icon" href="images/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
@@ -22,6 +22,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/lucide@0.460.0"></script>
+
+    <!-- ===== LIVE VISITOR TRACKING (Google Analytics 4) =====
+         Paste your Measurement ID below (looks like G-AB12CD34EF). Until then nothing is sent. -->
+    <script>
+        const GA_ID = 'G-Z00HHHR5SX';
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        const GA_ON = /^G-[A-Z0-9]{6,}$/.test(GA_ID) && GA_ID !== 'G-Z00HHHR5SX';
+        if (GA_ON) {
+            const s = document.createElement('script');
+            s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+            document.head.appendChild(s);
+            gtag('js', new Date());
+            gtag('config', GA_ID);
+        }
+        // Custom events (shown under Realtime > Event count and Reports > Engagement > Events)
+        function track(name, params) { if (GA_ON) gtag('event', name, params || {}); }
+        document.addEventListener('click', e => {
+            const a = e.target.closest && e.target.closest('a'); if (!a) return;
+            const h = a.href || '';
+            if (h.includes('wa.me')) track('whatsapp_click');
+            else if (h.includes('instagram.com')) track('instagram_click');
+            else if (h.includes('youtube.com')) track('youtube_click');
+            else if (a.getAttribute('href') === '#contact') track('custom_order_click');
+        });
+    </script>
 
     <style>
         /* ==========================================================================
@@ -1537,7 +1563,7 @@
                             </div>
                         </div>
 
-                        <!-- <p class="designer-signature">Felcy</p> -->
+                        <p class="designer-signature">Felcy</p>
                     </div>
                 </div>
             </div>
@@ -1897,6 +1923,7 @@
         $('#lbPrev').addEventListener('click', () => grid.scrollBy({ left: -lbStep() * 2, behavior: 'smooth' }));
 
         function openImage(i) {
+            track('lookbook_view', { title: list[i].title });
             lb.img.src = list[i].img; lb.cap.textContent = list[i].title + (list.length > 1 ? `  ·  ${i + 1} / ${list.length}` : '');
             lb.box.classList.add('active'); document.body.style.overflow = 'hidden';
         }
@@ -1972,6 +1999,7 @@
         $('#railPrev').addEventListener('click', () => rail.scrollBy({ left: -cardStep() * 2, behavior: 'smooth' }));
 
         function openClient(c) {
+            track('video_play', { outfit: c.outfit });
             vStage.innerHTML = '';
             vDialog.classList.toggle('vertical', c.vertical !== false);
             if (c.youtube) {
@@ -2012,6 +2040,7 @@
             if (!name || !phone || !message) return;
             const subject = encodeURIComponent(`Bespoke Couture Inquiry from ${name}`);
             const body = encodeURIComponent(`Client Name: ${name}\nPhone/WhatsApp: ${phone}\nOutfit Type: ${service}\n\nVision:\n${message}`);
+            track('consult_request');
             formFeedback.textContent = 'Redirecting to your email client...';
             window.location.href = `mailto:falgunirana2304@gmail.com?subject=${subject}&body=${body}`;
             setTimeout(() => { consultForm.reset(); formFeedback.textContent = ''; }, 4000);
