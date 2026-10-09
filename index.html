@@ -1249,6 +1249,62 @@
         .masonry-card:hover .zoom-dot, .masonry-card:focus-visible .zoom-dot { opacity: 1; transform: none; }
         .masonry-card:focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 3px; }
 
+        /* Lookbook: single-row horizontal scroll rail */
+        .wide-masonry {
+            column-count: auto;
+            display: flex;
+            gap: 28px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 6px var(--container-gutter) 28px;
+            margin: 0 calc(var(--container-gutter) * -1);
+            scroll-padding-left: var(--container-gutter);
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-rose) transparent;
+            -webkit-overflow-scrolling: touch;
+        }
+        .wide-masonry::-webkit-scrollbar { height: 6px; }
+        .wide-masonry::-webkit-scrollbar-thumb { background: var(--accent-rose); border-radius: 10px; }
+        .wide-masonry .masonry-card {
+            flex: 0 0 clamp(260px, 26vw, 400px);
+            scroll-snap-align: start;
+            margin-bottom: 0;
+            aspect-ratio: 3 / 4;
+        }
+        .wide-masonry .masonry-card img { width: 100%; height: 100%; object-fit: cover; }
+        .lb-controls { display: flex; gap: 12px; }
+        .rail-btn.light { color: var(--ink-primary); border-color: var(--line-subtle); background: var(--bg-elevated); }
+        .rail-btn.light:hover { color: #fff; background: var(--accent-rose); border-color: var(--accent-rose); }
+        @media (max-width: 768px) { .wide-masonry .masonry-card { flex-basis: 74vw; } }
+
+        /* Floating bubbles (hero + clients) */
+        .bubbles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .bubble {
+            position: absolute; bottom: -14%;
+            width: var(--s); height: var(--s);
+            left: var(--x);
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95) 0 7%, rgba(255,255,255,0.35) 20%, rgba(240,98,146,0.16) 58%, rgba(242,184,75,0.26) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            box-shadow: inset 0 0 16px rgba(255,255,255,0.6), 0 8px 26px rgba(214, 51, 108, 0.14);
+            opacity: 0;
+            animation: bubbleRise var(--d) ease-in-out var(--delay) infinite;
+        }
+        .clients-section .bubble {
+            background: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.55) 0 7%, rgba(255,255,255,0.12) 22%, rgba(214,51,108,0.18) 60%, rgba(242,184,75,0.22) 100%);
+            border-color: rgba(255, 255, 255, 0.28);
+            box-shadow: inset 0 0 14px rgba(255,255,255,0.25);
+        }
+        .clients-section .wide-container { position: relative; z-index: 1; }
+        @keyframes bubbleRise {
+            0%   { transform: translate(0, 0) scale(0.6); opacity: 0; }
+            12%  { opacity: 1; }
+            50%  { transform: translate(var(--sway), -60vh) scale(1); }
+            88%  { opacity: 0.9; }
+            100% { transform: translate(calc(var(--sway) * -0.7), -118vh) scale(1.08); opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) { .bubbles { display: none; } }
+
         /* Nav scroll-spy + pulse on WhatsApp */
         .desktop-nav a.active { color: var(--ink-primary); }
         .desktop-nav a.active::after { transform: scaleX(1); }
@@ -1488,7 +1544,13 @@
                         <span class="section-kicker">Lookbook & Creations</span>
                         <h2 class="section-title">The Curated Collection</h2>
                     </div>
-                    <p style="max-width: 480px;">Click on any piece to enlarge and view fabric finishes, embroidery textures, and handcrafted silhouettes.</p>
+                    <div style="display:flex; flex-direction:column; gap:18px; align-items:flex-start;">
+                        <p style="max-width: 480px;">Click on any piece to enlarge and view fabric finishes, embroidery textures, and handcrafted silhouettes.</p>
+                        <div class="lb-controls">
+                            <button class="rail-btn light" id="lbPrev" aria-label="Scroll lookbook left"><i data-lucide="arrow-left"></i></button>
+                            <button class="rail-btn light" id="lbNext" aria-label="Scroll lookbook right"><i data-lucide="arrow-right"></i></button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="filter-bar" id="filterBar"></div>
@@ -1659,9 +1721,10 @@
         //    Filter buttons are created automatically from the "cat" values.
         const LOOKBOOK = [
             { img: 'images/design-01.png', cat: 'Lehengas', tag: 'Festive Couture',   title: 'Rose Threadwork Lehenga' },
-            { img: 'images/design-02.png', cat: 'Blouses',  tag: 'Designer Blouses',  title: 'Back Neck Embroidery & Potli' },
+            { img: 'images/blouse_1.png', cat: 'Blouses',  tag: 'Designer Blouses',  title: 'Back Neck Embroidery & Potli' },
             { img: 'images/design-03.png', cat: 'Sarees',   tag: 'Celebration Wear',  title: 'Champagne Organza Saree' },
-            { img: 'images/design-04.png', cat: 'Kurtis',   tag: 'Everyday Elegance', title: 'Embroidered Cotton Kurti' }
+            { img: 'images/design-04.png', cat: 'Kurtis',   tag: 'Everyday Elegance', title: 'Embroidered Cotton Kurti' },
+            { img: 'images/blouse_2.png', cat: 'Blouses',   tag: 'Designer Blouses', title: 'V-Cut Moti Sleeves' }
         ];
 
         // 2) HAPPY CLIENT VIDEOS — add a new line per video.
@@ -1671,9 +1734,9 @@
         //    The entries below are PLACEHOLDERS — replace name/outfit/quote with your real clients.
         const CLIENT_VIDEOS = [
             { name: 'Happy Client', outfit: 'Navratri Wear',    quote: '', youtube: 'https://www.youtube.com/shorts/3WhkhvhmQDs', poster: 'images/client_1.png' },
-            { name: 'Happy Client', outfit: 'Festive Lehenga',  quote: '', youtube: 'videos/client-02.mp4', poster: 'images/design-01.png' },
-            { name: 'Happy Client', outfit: 'Designer Saree',   quote: '', youtube: 'videos/client-03.mp4', poster: 'images/design-03.png' },
-            { name: 'Happy Client', outfit: 'Custom Kurti',     quote: '', youtube: 'videos/client-04.mp4', poster: 'images/design-04.png' }
+            { name: 'Happy Client', outfit: 'Festive Lehenga',  quote: '', src: 'videos/client-02.mp4', poster: 'images/design-01.png' },
+            { name: 'Happy Client', outfit: 'Designer Saree',   quote: '', src: 'videos/client-03.mp4', poster: 'images/design-03.png' },
+            { name: 'Happy Client', outfit: 'Custom Kurti',     quote: '', src: 'videos/client-04.mp4', poster: 'images/design-04.png' }
         ];
 
         /* ===================================================================== */
@@ -1823,6 +1886,10 @@
         });
         if (cats.length <= 2) filterBar.hidden = true;   // no filters needed with a single category
 
+        const lbStep = () => (grid.querySelector('.masonry-card:not(.is-hidden)')?.getBoundingClientRect().width || 320) + 28;
+        $('#lbNext').addEventListener('click', () => grid.scrollBy({ left: lbStep() * 2, behavior: 'smooth' }));
+        $('#lbPrev').addEventListener('click', () => grid.scrollBy({ left: -lbStep() * 2, behavior: 'smooth' }));
+
         function openImage(i) {
             lb.img.src = list[i].img; lb.cap.textContent = list[i].title + (list.length > 1 ? `  ·  ${i + 1} / ${list.length}` : '');
             lb.box.classList.add('active'); document.body.style.overflow = 'hidden';
@@ -1837,7 +1904,20 @@
         /* ---------- Happy client videos ---------- */
         const rail = $('#clientRail'), vModal = $('#videoModal'), vDialog = $('#videoDialog'), vStage = $('#videoStage');
 
-        CLIENT_VIDEOS.forEach(c => {
+        // Accepts a full YouTube / Shorts URL, a bare 11-char video ID, or a local .mp4 path in either field
+        const ytId = v => {
+            const s = String(v || '').trim();
+            const m = s.match(/(?:shorts\/|[?&]v=|youtu\.be\/|embed\/|live\/)([\w-]{11})/);
+            return m ? m[1] : (/^[\w-]{11}$/.test(s) ? s : '');
+        };
+        const CLIENTS = CLIENT_VIDEOS.map(c => {
+            const raw = c.youtube || '';
+            const id = ytId(raw);
+            const src = c.src || (!id && /\.(mp4|webm|mov|m4v)(\?|$)/i.test(raw) ? raw : '');
+            return { ...c, youtube: id, src };
+        });
+
+        CLIENTS.forEach(c => {
             const poster = c.poster || (c.youtube ? `https://img.youtube.com/vi/${encodeURIComponent(c.youtube)}/hqdefault.jpg` : '');
             const card = document.createElement('article');
             card.className = 'client-card'; card.tabIndex = 0; card.setAttribute('role', 'button');
@@ -1891,6 +1971,8 @@
             if (c.youtube) {
                 const f = document.createElement('iframe');
                 f.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(c.youtube)}?autoplay=1&rel=0&playsinline=1`;
+                f.referrerPolicy = 'strict-origin-when-cross-origin';
+                f.title = 'Client video';
                 f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
                 vStage.append(f);
             } else {
@@ -1928,6 +2010,27 @@
             window.location.href = `mailto:falgunirana2304@gmail.com?subject=${subject}&body=${body}`;
             setTimeout(() => { consultForm.reset(); formFeedback.textContent = ''; }, 4000);
         });
+
+        /* ---------- Floating bubbles ---------- */
+        function addBubbles(section, count) {
+            if (!section || reduceMotion) return;
+            const wrap = document.createElement('div');
+            wrap.className = 'bubbles'; wrap.setAttribute('aria-hidden', 'true');
+            for (let i = 0; i < count; i++) {
+                const b = document.createElement('span');
+                b.className = 'bubble';
+                const size = 18 + Math.random() * 78;
+                b.style.setProperty('--s', size.toFixed(0) + 'px');
+                b.style.setProperty('--x', (Math.random() * 96).toFixed(1) + '%');
+                b.style.setProperty('--d', (11 + Math.random() * 12).toFixed(1) + 's');
+                b.style.setProperty('--delay', (-Math.random() * 20).toFixed(1) + 's');
+                b.style.setProperty('--sway', ((Math.random() - 0.5) * 120).toFixed(0) + 'px');
+                wrap.append(b);
+            }
+            section.prepend(wrap);
+        }
+        addBubbles($('#hero'), innerWidth < 768 ? 9 : 16);
+        addBubbles($('#clients'), innerWidth < 768 ? 7 : 12);
 
         /* ---------- Go ---------- */
         watchReveals();
